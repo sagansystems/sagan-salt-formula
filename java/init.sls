@@ -13,11 +13,11 @@ java_repo:
 java_license:
   cmd:
     - run
-    - name: echo oracle-java{{ pillar['java']['package'] }}-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+    - name: echo oracle-java{{ pillar['java']['version'] }}-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 
 java_pkg:
   pkg.installed:
-    - name: oracle-java{{ pillar['java']['package'] }}-installer
+    - name: oracle-java{{ pillar['java']['version'] }}-installer
     - refresh: True
     - requires:
       - cmd: java_license
@@ -25,6 +25,6 @@ java_pkg:
 
 oracle-java-set-default:
   pkg.latest:
-    - name: oracle-java{{ pillar['java']['package'] }}-set-default
+    - name: oracle-java{{ pillar['java']['version'] }}-set-default
     - watch:
       - pkg: java_pkg
