@@ -16,7 +16,7 @@ java_license:
     - name: echo oracle-java{{ pillar['java']['version'] }}-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 
 java_pkg:
-  pkg.installed:
+  pkg.latest:
     - name: oracle-java{{ pillar['java']['version'] }}-installer
     - refresh: True
     - requires:
