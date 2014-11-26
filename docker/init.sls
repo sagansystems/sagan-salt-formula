@@ -3,7 +3,7 @@ docker:
   cmd:
     - run
     - name: curl -sSL https://get.docker.com/ubuntu/ | sudo sh
-    - unless: docker -v | grep {{ pillar['docker']['version'] }}
+    - creates: /usr/bin/docker
 
 docker_group:
     group.present:
