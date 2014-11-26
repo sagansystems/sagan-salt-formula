@@ -5,6 +5,14 @@ docker:
     - name: curl -sSL https://get.docker.com/ubuntu/ | sudo sh
     - creates: /usr/bin/docker
 
+docker_service:
+  service:
+    - name: docker
+    - running
+    - enable: True
+    - requires:
+        - cmd: docker
+
 docker_group:
     group.present:
         - name: docker
