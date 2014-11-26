@@ -21,10 +21,18 @@ rvm:
     - require:
       - cmd: rvm_gpg
 
-rvm_profile:
+rvm_profile_{{ pillar['user'] }}:
   cmd:
     - run
     - user: {{ pillar['user'] }}
+    - name: echo "[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm" >> $HOME/.profile
+    - unless: grep ".rvm/scripts/rvm" ~/.profile
+    - require:
+      - cmd: rvm
+
+rvm_profile_root:
+  cmd:
+    - run
     - name: echo "[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm" >> $HOME/.profile
     - unless: grep ".rvm/scripts/rvm" ~/.profile
     - require:

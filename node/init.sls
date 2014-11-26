@@ -6,8 +6,7 @@ node_repo:
     - name: curl -sL https://deb.nodesource.com/setup | sudo bash -
 
 nodejs:
-  - pkg:
-    - installed
+  pkg.installed:
     - require:
       - cmd: node_repo
 

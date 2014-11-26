@@ -26,5 +26,5 @@ java_pkg:
 oracle-java-set-default:
   pkg.latest:
     - name: oracle-java{{ pillar['java']['version'] }}-set-default
-    - watch:
+    - requires:
       - pkg: java_pkg
