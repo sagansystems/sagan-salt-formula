@@ -11,3 +11,21 @@ rvm_gpg:
     - unless: gpg2 -k | grep 'RVM signing'
     - require:
       - pkg: gnupg2
+
+rvm:
+  cmd:
+    - run
+    - user: {{ pillar['user'] }}
+    - name: curl -s -L get.rvm.io | bash -s stable --quiet-curl
+    - unless: test -s "$HOME/.rvm/scripts/rvm"
+    - require:
+      - cmd: rvm_gpg
+
+rvm_profile:
+  cmd:
+    - run
+    - user: {{ pillar['user'] }}
+    - name: echo "[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm" >> $HOME/.profile
+    - unless: grep ".rvm/scripts/rvm" ~/.profile
+    - require:
+      - cmd: rvm
