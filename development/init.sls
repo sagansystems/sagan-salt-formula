@@ -1,17 +1,23 @@
 wget:
-  pkg.installed
+  pkg.latest
 
 curl:
-  pkg.installed
+  pkg.latest
 
 unzip:
-  pkg.installed
+  pkg.latest
 
 git:
-  pkg.installed
+  pkg.latest
 
 python-software-properties:
-  pkg.installed
+  pkg.latest
 
 build-essential:
-  pkg.installed
+  pkg.latest
+
+qt5-default:
+  pkg.latest
+
+libqt5webkit5-dev:
+  pkg.latest
