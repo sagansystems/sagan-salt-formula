@@ -15,9 +15,3 @@ python-software-properties:
 
 build-essential:
   pkg.latest
-
-qt5-default:
-  pkg.latest
-
-libqt5webkit5-dev:
-  pkg.latest
