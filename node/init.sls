@@ -24,3 +24,10 @@ npm_run_pkg:
         - PATH: /bin:/usr/bin:/usr/local/bin
       - require:
         - pkg: nodejs
+
+npm_self_update:
+  npm:
+    - name: npm@{{ pillar['npm']['version'] }}
+    - installed
+    - require:
+      - pkg: nodejs
