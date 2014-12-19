@@ -17,11 +17,8 @@ default_npm_path:
         - PATH=$PATH:/usr/local/bin:./node_modules/.bin
 
 npm_run_pkg:
-    cmd:
-      - run
-      - name: npm install -g npm-run
-      - env:
-        - PATH: /bin:/usr/bin:/usr/local/bin
+    npm.installed:
+      - name: npm-run
       - require:
         - pkg: nodejs
 
@@ -31,3 +28,10 @@ npm_self_update:
     - installed
     - require:
       - pkg: nodejs
+
+npm_remove_lock:
+  file.absent:
+    - name: /home/{{ pillar['user'] }}/.npm/_locks
+    - onchanges:
+      - npm: npm_self_update
+      - npm: npm_run_pkg
