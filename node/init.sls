@@ -31,3 +31,8 @@ npm_self_update:
     - installed
     - require:
       - pkg: nodejs
+
+# see https://sagansys.atlassian.net/browse/DEV-116
+npm_remove_lock:
+  file.absent:
+    - name: /home/vagrant/.npm/_locks
