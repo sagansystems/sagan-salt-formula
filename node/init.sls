@@ -4,6 +4,7 @@ node_repo:
   cmd:
     - run
     - name: curl -sL https://deb.nodesource.com/setup | sudo bash -
+    - unless: test -e /etc/apt/sources.list.d/nodesource.list
 
 nodejs:
   pkg.installed:
@@ -23,9 +24,8 @@ npm_run_pkg:
         - pkg: nodejs
 
 npm_self_update:
-  npm:
+  npm.installed:
     - name: npm@{{ pillar['npm']['version'] }}
-    - installed
     - require:
       - pkg: nodejs
 
